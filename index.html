@@ -42,7 +42,6 @@
 <script src="js/wNumb.js"></script>
         <script src="data/Areadiinteresse_1.js"></script>
         <script src="data/AlberiQfield_2.js"></script>
-        <script src="data/Alberi_OSM_3.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -728,88 +727,7 @@
         });
         bounds_group.addLayer(layer_AlberiQfield_2);
         map.addLayer(layer_AlberiQfield_2);
-        function pop_Alberi_OSM_3(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (var i in e.target._eventParents) {
-                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                            e.target._eventParents[i].resetStyle(e.target);
-                        }
-                    }
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['full_id'] !== null ? autolinker.link(String(feature.properties['full_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? autolinker.link(String(feature.properties['osm_id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['osm_type'] !== null ? autolinker.link(String(feature.properties['osm_type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['natural'] !== null ? autolinker.link(String(feature.properties['natural']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['leaf_type'] !== null ? autolinker.link(String(feature.properties['leaf_type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_Alberi_OSM_3_0() {
-            return {
-                pane: 'pane_Alberi_OSM_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(21,255,0,1.0)',
-                interactive: true,
-            }
-        }
-        map.createPane('pane_Alberi_OSM_3');
-        map.getPane('pane_Alberi_OSM_3').style.zIndex = 403;
-        map.getPane('pane_Alberi_OSM_3').style['mix-blend-mode'] = 'normal';
-        var layer_Alberi_OSM_3 = new L.geoJson(json_Alberi_OSM_3, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Alberi_OSM_3',
-            layerName: 'layer_Alberi_OSM_3',
-            pane: 'pane_Alberi_OSM_3',
-            onEachFeature: pop_Alberi_OSM_3,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_Alberi_OSM_3_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_Alberi_OSM_3);
         var overlaysTree = [
-            {label: '<img src="legend/Alberi_OSM_3.png" /> Alberi_OSM', layer: layer_Alberi_OSM_3},
             {label: 'Alberi Qfield<br /><table><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_AbetedelCaucaso0.png" /></td><td>Abete del Caucaso</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Acacia1.png" /></td><td>Acacia</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Acaciaspinosa2.png" /></td><td>Acacia spinosa</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Acero3.png" /></td><td>Acero</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_AcerodiBürger4.png" /></td><td>Acero di Bürger</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Aceroriccio5.png" /></td><td>Acero riccio</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Ailanto6.png" /></td><td>Ailanto</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Alloro7.png" /></td><td>Alloro</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Bagolaro8.png" /></td><td>Bagolaro</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Betulla9.png" /></td><td>Betulla</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Caria10.png" /></td><td>Caria</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Carpinobianco11.png" /></td><td>Carpino bianco</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Carpinonero12.png" /></td><td>Carpino nero</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_CedrodelLibano13.png" /></td><td>Cedro del Libano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Eleagno14.png" /></td><td>Eleagno</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Frassino15.png" /></td><td>Frassino</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Gelsoindiano16.png" /></td><td>Gelso indiano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Liquidambarorientale17.png" /></td><td>Liquidambar orientale</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_NespolodelGiappone18.png" /></td><td>Nespolo del Giappone</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Olmosiberiano19.png" /></td><td>Olmo siberiano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Orniello20.png" /></td><td>Orniello</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Osmantoodoroso21.png" /></td><td>Osmanto odoroso</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Pero22.png" /></td><td>Pero</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Platanooccidentale23.png" /></td><td>Platano occidentale</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Platanoorientale24.png" /></td><td>Platano orientale</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Tiglioamericano25.png" /></td><td>Tiglio americano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Tiglionostrano26.png" /></td><td>Tiglio nostrano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Tigliotomentoso27.png" /></td><td>Tiglio tomentoso</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Viburno28.png" /></td><td>Viburno</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Nonidentificato29.png" /></td><td>Non identificato</td></tr></table>', layer: layer_AlberiQfield_2},
             {label: '<img src="legend/Areadiinteresse_1.png" /> Area di interesse', layer: layer_Areadiinteresse_1},
             {label: "OSM Standard", layer: layer_OSMStandard_0},]
@@ -843,7 +761,7 @@
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"Specie": "str"};
+        var Filters = {"Genere": "str"};
         function filterFunc() {
           map.eachLayer(function(lyr){
           if ("options" in lyr && "dataVar" in lyr["options"]){
@@ -935,70 +853,63 @@
         }
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
-            var div_Specie = document.createElement('div');
-            div_Specie.id = "div_Specie";
-            div_Specie.className= "filterselect";
-            document.getElementById("menu").appendChild(div_Specie);
-            sel_Specie = document.createElement('select');
-            sel_Specie.multiple = true;
-            sel_Specie.size = 10;
-            sel_Specie.id = "sel_Specie";
-            var Specie_options_str = "<option value='' unselected></option>";
-            sel_Specie.onchange = function(){filterFunc()};
-            Specie_options_str  += '<option value="NULL">NULL</option>';
-            Specie_options_str  += '<option value="Abete del Caucaso ">Abete del Caucaso </option>';
-            Specie_options_str  += '<option value="Acacia">Acacia</option>';
-            Specie_options_str  += '<option value="Acacia spinosa">Acacia spinosa</option>';
-            Specie_options_str  += '<option value="Acero">Acero</option>';
-            Specie_options_str  += '<option value="Acero di Bürger ">Acero di Bürger </option>';
-            Specie_options_str  += '<option value="Acero riccio">Acero riccio</option>';
-            Specie_options_str  += '<option value="Ailanto">Ailanto</option>';
-            Specie_options_str  += '<option value="Alloro">Alloro</option>';
-            Specie_options_str  += '<option value="Bagolaro">Bagolaro</option>';
-            Specie_options_str  += '<option value="Betulla">Betulla</option>';
-            Specie_options_str  += '<option value="Caria">Caria</option>';
-            Specie_options_str  += '<option value="Carpino bianco">Carpino bianco</option>';
-            Specie_options_str  += '<option value="Carpino bianco ">Carpino bianco </option>';
-            Specie_options_str  += '<option value="Carpino nero">Carpino nero</option>';
-            Specie_options_str  += '<option value="Cedro del Libano">Cedro del Libano</option>';
-            Specie_options_str  += '<option value="Eleagno">Eleagno</option>';
-            Specie_options_str  += '<option value="Frassino">Frassino</option>';
-            Specie_options_str  += '<option value="Gelso indiano">Gelso indiano</option>';
-            Specie_options_str  += '<option value="Liquidambar orientale">Liquidambar orientale</option>';
-            Specie_options_str  += '<option value="Liquidambar orientale ">Liquidambar orientale </option>';
-            Specie_options_str  += '<option value="Nespolo del Giappone">Nespolo del Giappone</option>';
-            Specie_options_str  += '<option value="Olmo bianco">Olmo bianco</option>';
-            Specie_options_str  += '<option value="Olmo siberiano">Olmo siberiano</option>';
-            Specie_options_str  += '<option value="Olmo siberiano ">Olmo siberiano </option>';
-            Specie_options_str  += '<option value="Orniello">Orniello</option>';
-            Specie_options_str  += '<option value="Osmanto odoroso">Osmanto odoroso</option>';
-            Specie_options_str  += '<option value="Pero">Pero</option>';
-            Specie_options_str  += '<option value="Pero ">Pero </option>';
-            Specie_options_str  += '<option value="Platano occidentale">Platano occidentale</option>';
-            Specie_options_str  += '<option value="Platano orientale">Platano orientale</option>';
-            Specie_options_str  += '<option value="Platano orientale ">Platano orientale </option>';
-            Specie_options_str  += '<option value="Tiglio americano">Tiglio americano</option>';
-            Specie_options_str  += '<option value="Tiglio americano ">Tiglio americano </option>';
-            Specie_options_str  += '<option value="Tiglio nostrano">Tiglio nostrano</option>';
-            Specie_options_str  += '<option value="Tiglio tomentoso">Tiglio tomentoso</option>';
-            Specie_options_str  += '<option value="Viburno">Viburno</option>';
-            sel_Specie.innerHTML = Specie_options_str;
-            div_Specie.appendChild(sel_Specie);
-            var lab_Specie = document.createElement('div');
-            lab_Specie.innerHTML = 'Specie';
-            lab_Specie.className = 'filterlabel';
-            div_Specie.appendChild(lab_Specie);
-            var reset_Specie = document.createElement('div');
-            reset_Specie.innerHTML = 'clear filter';
-            reset_Specie.className = 'filterlabel';
-            reset_Specie.onclick = function() {
-                var options = document.getElementById("sel_Specie").options;
+            var div_Genere = document.createElement('div');
+            div_Genere.id = "div_Genere";
+            div_Genere.className= "filterselect";
+            document.getElementById("menu").appendChild(div_Genere);
+            sel_Genere = document.createElement('select');
+            sel_Genere.multiple = true;
+            sel_Genere.size = 10;
+            sel_Genere.id = "sel_Genere";
+            var Genere_options_str = "<option value='' unselected></option>";
+            sel_Genere.onchange = function(){filterFunc()};
+            Genere_options_str  += '<option value="Abete del Caucaso">Abete del Caucaso</option>';
+            Genere_options_str  += '<option value="Acacia">Acacia</option>';
+            Genere_options_str  += '<option value="Acacia spinosa">Acacia spinosa</option>';
+            Genere_options_str  += '<option value="Acero">Acero</option>';
+            Genere_options_str  += '<option value="Acero di Bürger">Acero di Bürger</option>';
+            Genere_options_str  += '<option value="Acero riccio">Acero riccio</option>';
+            Genere_options_str  += '<option value="Ailanto">Ailanto</option>';
+            Genere_options_str  += '<option value="Alloro">Alloro</option>';
+            Genere_options_str  += '<option value="Bagolaro">Bagolaro</option>';
+            Genere_options_str  += '<option value="Betulla">Betulla</option>';
+            Genere_options_str  += '<option value="Caria">Caria</option>';
+            Genere_options_str  += '<option value="Carpino bianco">Carpino bianco</option>';
+            Genere_options_str  += '<option value="Carpino nero">Carpino nero</option>';
+            Genere_options_str  += '<option value="Cedro del Libano">Cedro del Libano</option>';
+            Genere_options_str  += '<option value="Eleagno">Eleagno</option>';
+            Genere_options_str  += '<option value="Frassino">Frassino</option>';
+            Genere_options_str  += '<option value="Gelso indiano">Gelso indiano</option>';
+            Genere_options_str  += '<option value="Liquidambar orientale">Liquidambar orientale</option>';
+            Genere_options_str  += '<option value="Nespolo del Giappone">Nespolo del Giappone</option>';
+            Genere_options_str  += '<option value="Non identificato">Non identificato</option>';
+            Genere_options_str  += '<option value="Olmo siberiano">Olmo siberiano</option>';
+            Genere_options_str  += '<option value="Orniello">Orniello</option>';
+            Genere_options_str  += '<option value="Osmanto odoroso">Osmanto odoroso</option>';
+            Genere_options_str  += '<option value="Pero">Pero</option>';
+            Genere_options_str  += '<option value="Platano occidentale">Platano occidentale</option>';
+            Genere_options_str  += '<option value="Platano orientale">Platano orientale</option>';
+            Genere_options_str  += '<option value="Tiglio americano">Tiglio americano</option>';
+            Genere_options_str  += '<option value="Tiglio nostrano">Tiglio nostrano</option>';
+            Genere_options_str  += '<option value="Tiglio tomentoso">Tiglio tomentoso</option>';
+            Genere_options_str  += '<option value="Viburno">Viburno</option>';
+            sel_Genere.innerHTML = Genere_options_str;
+            div_Genere.appendChild(sel_Genere);
+            var lab_Genere = document.createElement('div');
+            lab_Genere.innerHTML = 'Genere';
+            lab_Genere.className = 'filterlabel';
+            div_Genere.appendChild(lab_Genere);
+            var reset_Genere = document.createElement('div');
+            reset_Genere.innerHTML = 'clear filter';
+            reset_Genere.className = 'filterlabel';
+            reset_Genere.onclick = function() {
+                var options = document.getElementById("sel_Genere").options;
                 for (var i=0; i < options.length; i++) {
                     options[i].selected = false;
                 }
                 filterFunc();
             };
-            div_Specie.appendChild(reset_Specie);
+            div_Genere.appendChild(reset_Genere);
         </script>
     </body>
 </html>
