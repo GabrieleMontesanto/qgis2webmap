@@ -10,8 +10,6 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/filter.css">
-<link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
         html, body, #map {
@@ -37,12 +35,9 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="js/tailDT.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/wNumb.js"></script>
-        <script src="data/Areadiinteresse_2.js"></script>
-        <script src="data/AlberiQfield_3.js"></script>
-        <script src="data/Alberi_OSM_4.js"></script>
+        <script src="data/Areadiinteresse_1.js"></script>
+        <script src="data/AlberiQfield_2.js"></script>
+        <script src="data/Alberi_OSM_3.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -62,7 +57,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:16
-        }).fitBounds([[45.499165145866066,9.146631261838763],[45.50576426272568,9.16754018656898]]);
+        }).fitBounds([[45.50066130946677,9.150353086678557],[45.5050607494648,9.164292485930758]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -111,22 +106,10 @@
         function setBounds() {
             map.setMaxBounds(map.getBounds());
         }
-        map.createPane('pane_GoogleSatellite_0');
-        map.getPane('pane_GoogleSatellite_0').style.zIndex = 400;
-        var layer_GoogleSatellite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            pane: 'pane_GoogleSatellite_0',
-            opacity: 1.0,
-            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
-            minZoom: 16,
-            maxZoom: 28,
-            minNativeZoom: 0,
-            maxNativeZoom: 20
-        });
-        layer_GoogleSatellite_0;
-        map.createPane('pane_OSMStandard_1');
-        map.getPane('pane_OSMStandard_1').style.zIndex = 401;
-        var layer_OSMStandard_1 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            pane: 'pane_OSMStandard_1',
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
             opacity: 1.0,
             attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
             minZoom: 16,
@@ -134,9 +117,9 @@
             minNativeZoom: 0,
             maxNativeZoom: 19
         });
-        layer_OSMStandard_1;
-        map.addLayer(layer_OSMStandard_1);
-        function pop_Areadiinteresse_2(feature, layer) {
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_Areadiinteresse_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -166,9 +149,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Areadiinteresse_2_0() {
+        function style_Areadiinteresse_1_0() {
             return {
-                pane: 'pane_Areadiinteresse_2',
+                pane: 'pane_Areadiinteresse_1',
                 opacity: 1,
                 color: 'rgba(255,0,0,1.0)',
                 dashArray: '20.0,4.0',
@@ -179,21 +162,21 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_Areadiinteresse_2');
-        map.getPane('pane_Areadiinteresse_2').style.zIndex = 402;
-        map.getPane('pane_Areadiinteresse_2').style['mix-blend-mode'] = 'normal';
-        var layer_Areadiinteresse_2 = new L.geoJson(json_Areadiinteresse_2, {
+        map.createPane('pane_Areadiinteresse_1');
+        map.getPane('pane_Areadiinteresse_1').style.zIndex = 401;
+        map.getPane('pane_Areadiinteresse_1').style['mix-blend-mode'] = 'normal';
+        var layer_Areadiinteresse_1 = new L.geoJson(json_Areadiinteresse_1, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_Areadiinteresse_2',
-            layerName: 'layer_Areadiinteresse_2',
-            pane: 'pane_Areadiinteresse_2',
-            onEachFeature: pop_Areadiinteresse_2,
-            style: style_Areadiinteresse_2_0,
+            dataVar: 'json_Areadiinteresse_1',
+            layerName: 'layer_Areadiinteresse_1',
+            pane: 'pane_Areadiinteresse_1',
+            onEachFeature: pop_Areadiinteresse_1,
+            style: style_Areadiinteresse_1_0,
         });
-        bounds_group.addLayer(layer_Areadiinteresse_2);
-        map.addLayer(layer_Areadiinteresse_2);
-        function pop_AlberiQfield_3(feature, layer) {
+        bounds_group.addLayer(layer_Areadiinteresse_1);
+        map.addLayer(layer_Areadiinteresse_1);
+        function pop_AlberiQfield_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -213,13 +196,6 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td class="visible-with-data" id="id" colspan="2"><strong>id</strong><br />' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Specie</th>\
-                        <td class="visible-with-data" id="Specie">' + (feature.properties['Specie'] !== null ? autolinker.link(String(feature.properties['Specie']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">Altezza stimata [m]</th>\
                         <td class="visible-with-data" id="Altezza [m]">' + (feature.properties['Altezza [m]'] !== null ? autolinker.link(String(feature.properties['Altezza [m]']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -228,8 +204,12 @@
                         <td class="visible-with-data" id="Circonf [m]">' + (feature.properties['Circonf [m]'] !== null ? autolinker.link(String(feature.properties['Circonf [m]']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Tipo di foglia</th>\
-                        <td class="visible-with-data" id="foglia">' + (feature.properties['foglia'] !== null ? autolinker.link(String(feature.properties['foglia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Genere</th>\
+                        <td class="visible-with-data" id="Genere">' + (feature.properties['Genere'] !== null ? autolinker.link(String(feature.properties['Genere']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">tipo di foglia</th>\
+                        <td class="visible-with-data" id="tipo di foglia">' + (feature.properties['tipo di foglia'] !== null ? autolinker.link(String(feature.properties['tipo di foglia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -239,11 +219,11 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_AlberiQfield_3_0(feature) {
-            switch(String(feature.properties['Specie'])) {
-                case 'Abete del Caucaso ':
+        function style_AlberiQfield_2_0(feature) {
+            switch(String(feature.properties['Genere'])) {
+                case 'Abete del Caucaso':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -253,13 +233,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(122,208,187,1.0)',
+                fillColor: 'rgba(223,98,127,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Acacia':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -269,13 +249,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(64,202,122,1.0)',
+                fillColor: 'rgba(38,225,144,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Acacia spinosa':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -285,13 +265,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(79,171,202,1.0)',
+                fillColor: 'rgba(99,103,207,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Acero':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -301,13 +281,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(64,234,110,1.0)',
+                fillColor: 'rgba(202,113,95,1.0)',
                 interactive: true,
             }
                     break;
-                case 'Acero di Bürger ':
+                case 'Acero di Bürger':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -317,13 +297,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(97,227,239,1.0)',
+                fillColor: 'rgba(142,48,214,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Acero riccio':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -333,13 +313,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(140,51,219,1.0)',
+                fillColor: 'rgba(192,222,43,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Ailanto':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -349,13 +329,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(108,205,48,1.0)',
+                fillColor: 'rgba(132,111,239,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Alloro':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -365,13 +345,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(214,49,239,1.0)',
+                fillColor: 'rgba(138,81,235,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Bagolaro':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -381,13 +361,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(72,228,163,1.0)',
+                fillColor: 'rgba(71,141,232,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Betulla':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -397,13 +377,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(169,61,216,1.0)',
+                fillColor: 'rgba(202,145,112,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Caria':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -413,13 +393,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(200,196,70,1.0)',
+                fillColor: 'rgba(15,133,201,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Carpino bianco':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -429,29 +409,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(214,55,81,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Carpino bianco ':
-                    return {
-                pane: 'pane_AlberiQfield_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(238,111,89,1.0)',
+                fillColor: 'rgba(233,210,135,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Carpino nero':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -461,13 +425,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(62,203,76,1.0)',
+                fillColor: 'rgba(143,165,236,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Cedro del Libano':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -477,13 +441,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(113,200,87,1.0)',
+                fillColor: 'rgba(235,125,173,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Eleagno':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -493,13 +457,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(32,219,200,1.0)',
+                fillColor: 'rgba(213,206,16,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Frassino':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -509,13 +473,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(74,156,211,1.0)',
+                fillColor: 'rgba(204,73,156,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Gelso indiano':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -525,13 +489,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(202,64,131,1.0)',
+                fillColor: 'rgba(64,213,59,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Liquidambar orientale':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -541,29 +505,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(209,109,142,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Liquidambar orientale ':
-                    return {
-                pane: 'pane_AlberiQfield_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(47,89,205,1.0)',
+                fillColor: 'rgba(208,112,237,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Nespolo del Giappone':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -573,29 +521,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(233,138,94,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Olmo bianco':
-                    return {
-                pane: 'pane_AlberiQfield_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(220,79,194,1.0)',
+                fillColor: 'rgba(55,201,196,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Olmo siberiano':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -605,29 +537,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(137,85,220,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Olmo siberiano ':
-                    return {
-                pane: 'pane_AlberiQfield_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(98,61,231,1.0)',
+                fillColor: 'rgba(237,86,212,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Orniello':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -637,13 +553,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(234,48,231,1.0)',
+                fillColor: 'rgba(175,225,137,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Osmanto odoroso':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -653,13 +569,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(214,65,162,1.0)',
+                fillColor: 'rgba(170,240,50,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Pero':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -669,29 +585,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(161,205,107,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Pero ':
-                    return {
-                pane: 'pane_AlberiQfield_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(193,236,85,1.0)',
+                fillColor: 'rgba(239,185,114,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Platano occidentale':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -701,13 +601,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(236,216,134,1.0)',
+                fillColor: 'rgba(76,208,179,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Platano orientale':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -717,29 +617,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(60,130,221,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Platano orientale ':
-                    return {
-                pane: 'pane_AlberiQfield_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(92,105,220,1.0)',
+                fillColor: 'rgba(134,238,172,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Tiglio americano':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -749,29 +633,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(225,162,103,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Tiglio americano ':
-                    return {
-                pane: 'pane_AlberiQfield_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(140,135,235,1.0)',
+                fillColor: 'rgba(231,69,74,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Tiglio nostrano':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -781,13 +649,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(221,97,97,1.0)',
+                fillColor: 'rgba(219,52,225,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Tiglio tomentoso':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -797,13 +665,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(179,203,20,1.0)',
+                fillColor: 'rgba(69,230,96,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Viburno':
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -813,13 +681,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(230,179,84,1.0)',
+                fillColor: 'rgba(106,233,67,1.0)',
                 interactive: true,
             }
                     break;
                 default:
                     return {
-                pane: 'pane_AlberiQfield_3',
+                pane: 'pane_AlberiQfield_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -835,27 +703,27 @@
                     break;
             }
         }
-        map.createPane('pane_AlberiQfield_3');
-        map.getPane('pane_AlberiQfield_3').style.zIndex = 403;
-        map.getPane('pane_AlberiQfield_3').style['mix-blend-mode'] = 'normal';
-        var layer_AlberiQfield_3 = new L.geoJson(json_AlberiQfield_3, {
+        map.createPane('pane_AlberiQfield_2');
+        map.getPane('pane_AlberiQfield_2').style.zIndex = 402;
+        map.getPane('pane_AlberiQfield_2').style['mix-blend-mode'] = 'normal';
+        var layer_AlberiQfield_2 = new L.geoJson(json_AlberiQfield_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_AlberiQfield_3',
-            layerName: 'layer_AlberiQfield_3',
-            pane: 'pane_AlberiQfield_3',
-            onEachFeature: pop_AlberiQfield_3,
+            dataVar: 'json_AlberiQfield_2',
+            layerName: 'layer_AlberiQfield_2',
+            pane: 'pane_AlberiQfield_2',
+            onEachFeature: pop_AlberiQfield_2,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_AlberiQfield_3_0(feature));
+                return L.circleMarker(latlng, style_AlberiQfield_2_0(feature));
             },
         });
-        bounds_group.addLayer(layer_AlberiQfield_3);
-        map.addLayer(layer_AlberiQfield_3);
-        function pop_Alberi_OSM_4(feature, layer) {
+        bounds_group.addLayer(layer_AlberiQfield_2);
+        map.addLayer(layer_AlberiQfield_2);
+        function pop_Alberi_OSM_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -903,9 +771,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Alberi_OSM_4_0() {
+        function style_Alberi_OSM_3_0() {
             return {
-                pane: 'pane_Alberi_OSM_4',
+                pane: 'pane_Alberi_OSM_3',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -919,31 +787,30 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Alberi_OSM_4');
-        map.getPane('pane_Alberi_OSM_4').style.zIndex = 404;
-        map.getPane('pane_Alberi_OSM_4').style['mix-blend-mode'] = 'normal';
-        var layer_Alberi_OSM_4 = new L.geoJson(json_Alberi_OSM_4, {
+        map.createPane('pane_Alberi_OSM_3');
+        map.getPane('pane_Alberi_OSM_3').style.zIndex = 403;
+        map.getPane('pane_Alberi_OSM_3').style['mix-blend-mode'] = 'normal';
+        var layer_Alberi_OSM_3 = new L.geoJson(json_Alberi_OSM_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Alberi_OSM_4',
-            layerName: 'layer_Alberi_OSM_4',
-            pane: 'pane_Alberi_OSM_4',
-            onEachFeature: pop_Alberi_OSM_4,
+            dataVar: 'json_Alberi_OSM_3',
+            layerName: 'layer_Alberi_OSM_3',
+            pane: 'pane_Alberi_OSM_3',
+            onEachFeature: pop_Alberi_OSM_3,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Alberi_OSM_4_0(feature));
+                return L.circleMarker(latlng, style_Alberi_OSM_3_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Alberi_OSM_4);
+        bounds_group.addLayer(layer_Alberi_OSM_3);
         var overlaysTree = [
-            {label: '<img src="legend/Alberi_OSM_4.png" /> Alberi_OSM', layer: layer_Alberi_OSM_4},
-            {label: 'Alberi Qfield<br /><table><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_AbetedelCaucaso0.png" /></td><td>Abete del Caucaso </td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Acacia1.png" /></td><td>Acacia</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Acaciaspinosa2.png" /></td><td>Acacia spinosa</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Acero3.png" /></td><td>Acero</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_AcerodiBürger4.png" /></td><td>Acero di Bürger </td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Aceroriccio5.png" /></td><td>Acero riccio</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Ailanto6.png" /></td><td>Ailanto</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Alloro7.png" /></td><td>Alloro</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Bagolaro8.png" /></td><td>Bagolaro</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Betulla9.png" /></td><td>Betulla</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Caria10.png" /></td><td>Caria</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Carpinobianco11.png" /></td><td>Carpino bianco</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Carpinobianco12.png" /></td><td>Carpino bianco </td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Carpinonero13.png" /></td><td>Carpino nero</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_CedrodelLibano14.png" /></td><td>Cedro del Libano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Eleagno15.png" /></td><td>Eleagno</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Frassino16.png" /></td><td>Frassino</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Gelsoindiano17.png" /></td><td>Gelso indiano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Liquidambarorientale18.png" /></td><td>Liquidambar orientale</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Liquidambarorientale19.png" /></td><td>Liquidambar orientale </td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_NespolodelGiappone20.png" /></td><td>Nespolo del Giappone</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Olmobianco21.png" /></td><td>Olmo bianco</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Olmosiberiano22.png" /></td><td>Olmo siberiano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Olmosiberiano23.png" /></td><td>Olmo siberiano </td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Orniello24.png" /></td><td>Orniello</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Osmantoodoroso25.png" /></td><td>Osmanto odoroso</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Pero26.png" /></td><td>Pero</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Pero27.png" /></td><td>Pero </td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Platanooccidentale28.png" /></td><td>Platano occidentale</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Platanoorientale29.png" /></td><td>Platano orientale</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Platanoorientale30.png" /></td><td>Platano orientale </td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Tiglioamericano31.png" /></td><td>Tiglio americano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Tiglioamericano32.png" /></td><td>Tiglio americano </td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Tiglionostrano33.png" /></td><td>Tiglio nostrano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Tigliotomentoso34.png" /></td><td>Tiglio tomentoso</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Viburno35.png" /></td><td>Viburno</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_3_Nonidentificato36.png" /></td><td>Non identificato</td></tr></table>', layer: layer_AlberiQfield_3},
-            {label: '<img src="legend/Areadiinteresse_2.png" /> Area di interesse', layer: layer_Areadiinteresse_2},
-            {label: "OSM Standard", layer: layer_OSMStandard_1},
-            {label: "Google Satellite", layer: layer_GoogleSatellite_0},]
+            {label: '<img src="legend/Alberi_OSM_3.png" /> Alberi_OSM', layer: layer_Alberi_OSM_3},
+            {label: 'Alberi Qfield<br /><table><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_AbetedelCaucaso0.png" /></td><td>Abete del Caucaso</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Acacia1.png" /></td><td>Acacia</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Acaciaspinosa2.png" /></td><td>Acacia spinosa</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Acero3.png" /></td><td>Acero</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_AcerodiBürger4.png" /></td><td>Acero di Bürger</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Aceroriccio5.png" /></td><td>Acero riccio</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Ailanto6.png" /></td><td>Ailanto</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Alloro7.png" /></td><td>Alloro</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Bagolaro8.png" /></td><td>Bagolaro</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Betulla9.png" /></td><td>Betulla</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Caria10.png" /></td><td>Caria</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Carpinobianco11.png" /></td><td>Carpino bianco</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Carpinonero12.png" /></td><td>Carpino nero</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_CedrodelLibano13.png" /></td><td>Cedro del Libano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Eleagno14.png" /></td><td>Eleagno</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Frassino15.png" /></td><td>Frassino</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Gelsoindiano16.png" /></td><td>Gelso indiano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Liquidambarorientale17.png" /></td><td>Liquidambar orientale</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_NespolodelGiappone18.png" /></td><td>Nespolo del Giappone</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Olmosiberiano19.png" /></td><td>Olmo siberiano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Orniello20.png" /></td><td>Orniello</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Osmantoodoroso21.png" /></td><td>Osmanto odoroso</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Pero22.png" /></td><td>Pero</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Platanooccidentale23.png" /></td><td>Platano occidentale</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Platanoorientale24.png" /></td><td>Platano orientale</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Tiglioamericano25.png" /></td><td>Tiglio americano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Tiglionostrano26.png" /></td><td>Tiglio nostrano</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Tigliotomentoso27.png" /></td><td>Tiglio tomentoso</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Viburno28.png" /></td><td>Viburno</td></tr><tr><td style="text-align: center;"><img src="legend/AlberiQfield_2_Nonidentificato29.png" /></td><td>Non identificato</td></tr></table>', layer: layer_AlberiQfield_2},
+            {label: '<img src="legend/Areadiinteresse_1.png" /> Area di interesse', layer: layer_Areadiinteresse_1},
+            {label: "OSM Standard", layer: layer_OSMStandard_0},]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
             //selectorBack: false,
@@ -955,181 +822,6 @@
         });
         lay.addTo(map);
         setBounds();
-        var mapDiv = document.getElementById('map');
-        var row = document.createElement('div');
-        row.className="row";
-        row.id="all";
-        row.style.height = "100%";
-        var col1 = document.createElement('div');
-        col1.className="col9";
-        col1.id = "mapWindow";
-        col1.style.height = "99%";
-        col1.style.width = "80%";
-        col1.style.display = "inline-block";
-        var col2 = document.createElement('div');
-        col2.className="col3";
-        col2.id = "menu";
-        col2.style.display = "inline-block";
-        mapDiv.parentNode.insertBefore(row, mapDiv);
-        document.getElementById("all").appendChild(col1);
-        document.getElementById("all").appendChild(col2);
-        col1.appendChild(mapDiv)
-        var Filters = {"Specie": "str"};
-        function filterFunc() {
-          map.eachLayer(function(lyr){
-          if ("options" in lyr && "dataVar" in lyr["options"]){
-            features = this[lyr["options"]["dataVar"]].features.slice(0);
-            try{
-              for (key in Filters){
-                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
-                if (Filters[key] == "str" || Filters[key] == "bool"){
-                  var selection = [];
-                  var options = document.getElementById("sel_" + keyS).options
-                  for (var i=0; i < options.length; i++) {
-                    if (options[i].selected) selection.push(options[i].value);
-                  }
-                    try{
-                      if (key in features[0].properties){
-                        for (i = features.length - 1;
-                          i >= 0; --i){
-                          if (selection.indexOf(
-                          features[i].properties[key])<0
-                          && selection.length>0) {
-                          features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                  }
-                }
-                if (Filters[key] == "int"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (parseInt(features[i].properties[key])
-                          < sliderVals[0]
-                          || parseInt(features[i].properties[key])
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "real"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (features[i].properties[key]
-                          < sliderVals[0]
-                          || features[i].properties[key]
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "date"
-                  || Filters[key] == "datetime"
-                  || Filters[key] == "time"){
-                  try{
-                    if (key in features[0].properties){
-                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
-                      startdate = document.getElementById("dat_" +
-                        HTMLkey + "_date1").value.replace(" ", "T");
-                      enddate = document.getElementById("dat_" +
-                        HTMLkey + "_date2").value.replace(" ", "T");
-                      for (i = features.length - 1; i >= 0; --i){
-                        if (features[i].properties[key] < startdate
-                          || features[i].properties[key] > enddate){
-                          features.splice(i,1);
-                        }
-                      }
-                    }
-                  } catch(err){
-                  }
-                }
-              }
-            } catch(err){
-            }
-          this[lyr["options"]["layerName"]].clearLayers();
-          this[lyr["options"]["layerName"]].addData(features);
-          }
-          })
-        }
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_Specie = document.createElement('div');
-            div_Specie.id = "div_Specie";
-            div_Specie.className= "filterselect";
-            document.getElementById("menu").appendChild(div_Specie);
-            sel_Specie = document.createElement('select');
-            sel_Specie.multiple = true;
-            sel_Specie.size = 10;
-            sel_Specie.id = "sel_Specie";
-            var Specie_options_str = "<option value='' unselected></option>";
-            sel_Specie.onchange = function(){filterFunc()};
-            Specie_options_str  += '<option value="NULL">NULL</option>';
-            Specie_options_str  += '<option value="Abete del Caucaso ">Abete del Caucaso </option>';
-            Specie_options_str  += '<option value="Acacia">Acacia</option>';
-            Specie_options_str  += '<option value="Acacia spinosa">Acacia spinosa</option>';
-            Specie_options_str  += '<option value="Acero">Acero</option>';
-            Specie_options_str  += '<option value="Acero di Bürger ">Acero di Bürger </option>';
-            Specie_options_str  += '<option value="Acero riccio">Acero riccio</option>';
-            Specie_options_str  += '<option value="Ailanto">Ailanto</option>';
-            Specie_options_str  += '<option value="Alloro">Alloro</option>';
-            Specie_options_str  += '<option value="Bagolaro">Bagolaro</option>';
-            Specie_options_str  += '<option value="Betulla">Betulla</option>';
-            Specie_options_str  += '<option value="Caria">Caria</option>';
-            Specie_options_str  += '<option value="Carpino bianco">Carpino bianco</option>';
-            Specie_options_str  += '<option value="Carpino bianco ">Carpino bianco </option>';
-            Specie_options_str  += '<option value="Carpino nero">Carpino nero</option>';
-            Specie_options_str  += '<option value="Cedro del Libano">Cedro del Libano</option>';
-            Specie_options_str  += '<option value="Eleagno">Eleagno</option>';
-            Specie_options_str  += '<option value="Frassino">Frassino</option>';
-            Specie_options_str  += '<option value="Gelso indiano">Gelso indiano</option>';
-            Specie_options_str  += '<option value="Liquidambar orientale">Liquidambar orientale</option>';
-            Specie_options_str  += '<option value="Liquidambar orientale ">Liquidambar orientale </option>';
-            Specie_options_str  += '<option value="Nespolo del Giappone">Nespolo del Giappone</option>';
-            Specie_options_str  += '<option value="Olmo bianco">Olmo bianco</option>';
-            Specie_options_str  += '<option value="Olmo siberiano">Olmo siberiano</option>';
-            Specie_options_str  += '<option value="Olmo siberiano ">Olmo siberiano </option>';
-            Specie_options_str  += '<option value="Orniello">Orniello</option>';
-            Specie_options_str  += '<option value="Osmanto odoroso">Osmanto odoroso</option>';
-            Specie_options_str  += '<option value="Pero">Pero</option>';
-            Specie_options_str  += '<option value="Pero ">Pero </option>';
-            Specie_options_str  += '<option value="Platano occidentale">Platano occidentale</option>';
-            Specie_options_str  += '<option value="Platano orientale">Platano orientale</option>';
-            Specie_options_str  += '<option value="Platano orientale ">Platano orientale </option>';
-            Specie_options_str  += '<option value="Tiglio americano">Tiglio americano</option>';
-            Specie_options_str  += '<option value="Tiglio americano ">Tiglio americano </option>';
-            Specie_options_str  += '<option value="Tiglio nostrano">Tiglio nostrano</option>';
-            Specie_options_str  += '<option value="Tiglio tomentoso">Tiglio tomentoso</option>';
-            Specie_options_str  += '<option value="Viburno">Viburno</option>';
-            sel_Specie.innerHTML = Specie_options_str;
-            div_Specie.appendChild(sel_Specie);
-            var lab_Specie = document.createElement('div');
-            lab_Specie.innerHTML = 'Specie';
-            lab_Specie.className = 'filterlabel';
-            div_Specie.appendChild(lab_Specie);
-            var reset_Specie = document.createElement('div');
-            reset_Specie.innerHTML = 'clear filter';
-            reset_Specie.className = 'filterlabel';
-            reset_Specie.onclick = function() {
-                var options = document.getElementById("sel_Specie").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_Specie.appendChild(reset_Specie);
         </script>
     </body>
 </html>
