@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/filter.css">
+<link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
         html, body, #map {
@@ -35,6 +37,9 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet-measure.js"></script>
+        <script src="js/tailDT.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/wNumb.js"></script>
         <script src="data/Areadiinteresse_1.js"></script>
         <script src="data/AlberiQfield_2.js"></script>
         <script src="data/Alberi_OSM_3.js"></script>
@@ -760,9 +765,6 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['leaf_type'] !== null ? autolinker.link(String(feature.properties['leaf_type']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['leaf_cycle'] !== null ? autolinker.link(String(feature.properties['leaf_cycle']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
@@ -822,6 +824,181 @@
         });
         lay.addTo(map);
         setBounds();
+        var mapDiv = document.getElementById('map');
+        var row = document.createElement('div');
+        row.className="row";
+        row.id="all";
+        row.style.height = "100%";
+        var col1 = document.createElement('div');
+        col1.className="col9";
+        col1.id = "mapWindow";
+        col1.style.height = "99%";
+        col1.style.width = "80%";
+        col1.style.display = "inline-block";
+        var col2 = document.createElement('div');
+        col2.className="col3";
+        col2.id = "menu";
+        col2.style.display = "inline-block";
+        mapDiv.parentNode.insertBefore(row, mapDiv);
+        document.getElementById("all").appendChild(col1);
+        document.getElementById("all").appendChild(col2);
+        col1.appendChild(mapDiv)
+        var Filters = {"Specie": "str"};
+        function filterFunc() {
+          map.eachLayer(function(lyr){
+          if ("options" in lyr && "dataVar" in lyr["options"]){
+            features = this[lyr["options"]["dataVar"]].features.slice(0);
+            try{
+              for (key in Filters){
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                if (Filters[key] == "str" || Filters[key] == "bool"){
+                  var selection = [];
+                  var options = document.getElementById("sel_" + keyS).options
+                  for (var i=0; i < options.length; i++) {
+                    if (options[i].selected) selection.push(options[i].value);
+                  }
+                    try{
+                      if (key in features[0].properties){
+                        for (i = features.length - 1;
+                          i >= 0; --i){
+                          if (selection.indexOf(
+                          features[i].properties[key])<0
+                          && selection.length>0) {
+                          features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                  }
+                }
+                if (Filters[key] == "int"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (parseInt(features[i].properties[key])
+                          < sliderVals[0]
+                          || parseInt(features[i].properties[key])
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "real"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (features[i].properties[key]
+                          < sliderVals[0]
+                          || features[i].properties[key]
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "date"
+                  || Filters[key] == "datetime"
+                  || Filters[key] == "time"){
+                  try{
+                    if (key in features[0].properties){
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                      startdate = document.getElementById("dat_" +
+                        HTMLkey + "_date1").value.replace(" ", "T");
+                      enddate = document.getElementById("dat_" +
+                        HTMLkey + "_date2").value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i){
+                        if (features[i].properties[key] < startdate
+                          || features[i].properties[key] > enddate){
+                          features.splice(i,1);
+                        }
+                      }
+                    }
+                  } catch(err){
+                  }
+                }
+              }
+            } catch(err){
+            }
+          this[lyr["options"]["layerName"]].clearLayers();
+          this[lyr["options"]["layerName"]].addData(features);
+          }
+          })
+        }
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_Specie = document.createElement('div');
+            div_Specie.id = "div_Specie";
+            div_Specie.className= "filterselect";
+            document.getElementById("menu").appendChild(div_Specie);
+            sel_Specie = document.createElement('select');
+            sel_Specie.multiple = true;
+            sel_Specie.size = 10;
+            sel_Specie.id = "sel_Specie";
+            var Specie_options_str = "<option value='' unselected></option>";
+            sel_Specie.onchange = function(){filterFunc()};
+            Specie_options_str  += '<option value="NULL">NULL</option>';
+            Specie_options_str  += '<option value="Abete del Caucaso ">Abete del Caucaso </option>';
+            Specie_options_str  += '<option value="Acacia">Acacia</option>';
+            Specie_options_str  += '<option value="Acacia spinosa">Acacia spinosa</option>';
+            Specie_options_str  += '<option value="Acero">Acero</option>';
+            Specie_options_str  += '<option value="Acero di Bürger ">Acero di Bürger </option>';
+            Specie_options_str  += '<option value="Acero riccio">Acero riccio</option>';
+            Specie_options_str  += '<option value="Ailanto">Ailanto</option>';
+            Specie_options_str  += '<option value="Alloro">Alloro</option>';
+            Specie_options_str  += '<option value="Bagolaro">Bagolaro</option>';
+            Specie_options_str  += '<option value="Betulla">Betulla</option>';
+            Specie_options_str  += '<option value="Caria">Caria</option>';
+            Specie_options_str  += '<option value="Carpino bianco">Carpino bianco</option>';
+            Specie_options_str  += '<option value="Carpino bianco ">Carpino bianco </option>';
+            Specie_options_str  += '<option value="Carpino nero">Carpino nero</option>';
+            Specie_options_str  += '<option value="Cedro del Libano">Cedro del Libano</option>';
+            Specie_options_str  += '<option value="Eleagno">Eleagno</option>';
+            Specie_options_str  += '<option value="Frassino">Frassino</option>';
+            Specie_options_str  += '<option value="Gelso indiano">Gelso indiano</option>';
+            Specie_options_str  += '<option value="Liquidambar orientale">Liquidambar orientale</option>';
+            Specie_options_str  += '<option value="Liquidambar orientale ">Liquidambar orientale </option>';
+            Specie_options_str  += '<option value="Nespolo del Giappone">Nespolo del Giappone</option>';
+            Specie_options_str  += '<option value="Olmo bianco">Olmo bianco</option>';
+            Specie_options_str  += '<option value="Olmo siberiano">Olmo siberiano</option>';
+            Specie_options_str  += '<option value="Olmo siberiano ">Olmo siberiano </option>';
+            Specie_options_str  += '<option value="Orniello">Orniello</option>';
+            Specie_options_str  += '<option value="Osmanto odoroso">Osmanto odoroso</option>';
+            Specie_options_str  += '<option value="Pero">Pero</option>';
+            Specie_options_str  += '<option value="Pero ">Pero </option>';
+            Specie_options_str  += '<option value="Platano occidentale">Platano occidentale</option>';
+            Specie_options_str  += '<option value="Platano orientale">Platano orientale</option>';
+            Specie_options_str  += '<option value="Platano orientale ">Platano orientale </option>';
+            Specie_options_str  += '<option value="Tiglio americano">Tiglio americano</option>';
+            Specie_options_str  += '<option value="Tiglio americano ">Tiglio americano </option>';
+            Specie_options_str  += '<option value="Tiglio nostrano">Tiglio nostrano</option>';
+            Specie_options_str  += '<option value="Tiglio tomentoso">Tiglio tomentoso</option>';
+            Specie_options_str  += '<option value="Viburno">Viburno</option>';
+            sel_Specie.innerHTML = Specie_options_str;
+            div_Specie.appendChild(sel_Specie);
+            var lab_Specie = document.createElement('div');
+            lab_Specie.innerHTML = 'Specie';
+            lab_Specie.className = 'filterlabel';
+            div_Specie.appendChild(lab_Specie);
+            var reset_Specie = document.createElement('div');
+            reset_Specie.innerHTML = 'clear filter';
+            reset_Specie.className = 'filterlabel';
+            reset_Specie.onclick = function() {
+                var options = document.getElementById("sel_Specie").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_Specie.appendChild(reset_Specie);
         </script>
     </body>
 </html>
